@@ -1,0 +1,17 @@
+image: archlinux
+packages:
+  - gcc
+  - meson
+  - fftw
+sources:
+  - https://github.com/delthas/libpaulstretch
+tasks:
+  - setup: |
+      cd libpaulstretch
+      meson build/
+  - build: |
+      cd libpaulstretch
+      ninja -C build/
+  - test: |
+      cd libpaulstretch/build/
+      example/simple ../example/sample.raw ../example/stretched.raw
